@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Проектная работа №4">
+  <meta name="author" content="Карина Ляпина">
+  <title>Mesto</title>
+  <link rel="stylesheet" href="./pages/index.css">
+</head>
+<body class="page">
+  <div class="page__container">
+    <header class="header">
+      <a href="#" class="header__logo"></a>
+    </header>
+    <main class="content">
+      <section class="profile">
+        <img src="./images/profile-avatar.jpg" alt="Аватарка в профиле" class="profile__avatar">
+        <div class="profile-info">
+          <h1 class="profile-info__name">Жак-Ив Кусто</h1>
+          <button class="profile-info__edit-button" type="button"></button>
+          <p class="profile-info__description">Исследователь океана</p>
+        </div>
+        <button class="profile__add-button" type="button"></button>
+      </section>
+
+      <section class="cards">
+        <div class="card">
+          <img src="./images/card-karachayevsk.jpg" alt="Картинка для карточки Карачаевск" class="card__image">
+          <div class="card__info">
+            <h2 class="card__title">Карачаевск</h2>
+            <button class="card__like-button" type="button"></button>
+          </div>          
+        </div>
+        <div class="card">
+          <img src="./images/card-elbrus.jpg" alt="Картинка для карточки Эльбрус" class="card__image">
+          <div class="card__info">
+            <h2 class="card__title">Гора Эльбрус</h2>
+            <button class="card__like-button" type="button"></button>
+          </div>          
+        </div>
+        <div class="card">
+          <img src="./images/card-dombay.jpg" alt="Картинка для карточки Домбай" class="card__image">
+          <div class="card__info">
+            <h2 class="card__title">Домбай</h2>
+            <button class="card__like-button" type="button"></button>
+          </div>          
+        </div>
+        <div class="card">
+          <img src="./images/card-elbrus.jpg" alt="Картинка для карточки Эльбрус" class="card__image">
+          <div class="card__info">
+            <h2 class="card__title">Гора Эльбрус</h2>
+            <button class="card__like-button" type="button"></button>
+          </div>          
+        </div>
+        <div class="card">
+          <img src="./images/card-dombay.jpg" alt="Картинка для карточки Домбай" class="card__image">
+          <div class="card__info">
+            <h2 class="card__title">Домбай</h2>
+            <button class="card__like-button" type="button"></button>
+          </div>          
+        </div>
+        <div class="card">
+          <img src="./images/card-karachayevsk.jpg" alt="Картинка для карточки Карачаево-Черкесия" class="card__image">
+          <div class="card__info">
+            <h2 class="card__title">Карачаево-Черкесия</h2>
+            <button class="card__like-button" type="button"></button>
+          </div>          
+        </div>
+      </section>
+    </main>
+    <footer class="footer">
+      <p class="footer__copyright">© 2021 Mesto Russia</p>
+    </footer>
+    <section class="popup popup_opened">
+      <div class="popup__container">
+        <button class="popup__close-button"></button>
+        <h2 class="popup__title">Редактировать профиль</h2>
+        <form action="" class="popup__admin">
+          <fieldset class="popup__input-container">
+            <input class="popup__input" type="text">
+            <input class="popup__input" type="text">
+          </fieldset>
+          <button class="popup__save-button" type="submit">Сохранить</button>
+        </form>
+      </div>
+    </section>
+  </div>
+</body>
+</html>
