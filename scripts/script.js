@@ -18,7 +18,7 @@ function toggleClass() {
 //функция для закрытия формы при нажатии на оверлей
 function overlayClick(event) {
   if (event.target === event.currentTarget) {
-    toggleClass()
+    toggleClass();
   }
 };
 
@@ -27,7 +27,7 @@ function formSubmitHandler (evt) {
   evt.preventDefault();
   userName.textContent = nameInput.value;
   userJob.textContent = jobInput.value;
-  toggleClass()
+  toggleClass();
 };
 
 popup.addEventListener('submit', formSubmitHandler); //сохраняем изменения в профиле
