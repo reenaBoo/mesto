@@ -16,4 +16,4 @@
 
 **Ссылка на проект на GitHub**
 
-* С проектом можно ознакомится на странице gh-pages https://reenaboo.github.io/mesto/
+* С проектом можно ознакомиться на странице gh-pages https://reenaboo.github.io/mesto/
