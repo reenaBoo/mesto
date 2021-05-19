@@ -3,9 +3,9 @@ let nameInput = popup.querySelector('.form__input_type_name'); //поле фор
 let jobInput = popup.querySelector('.form__input_type_job'); //поле формы с описание работы пользователя
 const closeButton = popup.querySelector('.popup__close-button'); //кнопка закрытия формы
 const profile = document.querySelector('.profile'); //секция с профилем
-let userName = profile.querySelector('.profile-info__name'); //имя пользователя
-let userJob = profile.querySelector('.profile-info__description'); //описание работы пользователя
-const editButton = profile.querySelector('.profile-info__edit-button'); //кнопка редактирования формы
+let userName = profile.querySelector('.profile__name'); //имя пользователя
+let userJob = profile.querySelector('.profile__description'); //описание работы пользователя
+const editButton = profile.querySelector('.profile__edit-button'); //кнопка редактирования формы
 
 //функция для добавления класса для открытии формы
 function openPopup() {
