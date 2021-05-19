@@ -7,18 +7,22 @@ let userName = profile.querySelector('.profile-info__name'); //имя польз
 let userJob = profile.querySelector('.profile-info__description'); //описание работы пользователя
 const editButton = profile.querySelector('.profile-info__edit-button'); //кнопка редактирования формы
 
-nameInput.value = userName.textContent; //данные берутся из профиля
-jobInput.value = userJob.textContent; //данные берутся из профиля
+//функция для добавления класса для открытии формы
+function openPopup() {
+  nameInput.value = userName.textContent; //данные берутся из профиля
+  jobInput.value = userJob.textContent; //данные берутся из профиля
+  popup.classList.add('popup_opened');
+};
 
-//функция для переключения класса при открытии и закрытии формы
-function toggleClass() {
-  popup.classList.toggle('popup_opened');
+//функция для удаления класса для закрытия формы
+function closePopup() {
+  popup.classList.remove('popup_opened');
 };
 
 //функция для закрытия формы при нажатии на оверлей
 function overlayClick(event) {
   if (event.target === event.currentTarget) {
-    toggleClass();
+    closePopup();
   }
 };
 
@@ -27,10 +31,10 @@ function formSubmitHandler (evt) {
   evt.preventDefault();
   userName.textContent = nameInput.value;
   userJob.textContent = jobInput.value;
-  toggleClass();
+  closePopup();
 };
 
 popup.addEventListener('submit', formSubmitHandler); //сохраняем изменения в профиле
-closeButton.addEventListener('click', toggleClass); //закрываем форму при нажатии на крестик
+closeButton.addEventListener('click', closePopup); //закрываем форму при нажатии на крестик
 popup.addEventListener('click', overlayClick); //закрываем форму при нажатии на оверлей
-editButton.addEventListener('click', toggleClass); //открываем форму при нажатии кнопку редактирования профиля
+editButton.addEventListener('click', openPopup); //открываем форму при нажатии кнопку редактирования профиля
