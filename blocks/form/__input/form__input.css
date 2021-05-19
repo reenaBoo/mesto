@@ -10,3 +10,7 @@
   padding: 0;
   margin: 0;
 }
+
+.form__input:first-of-type {
+  margin-bottom: 30px;
+}
