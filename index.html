@@ -19,10 +19,10 @@
         <img src="./images/profile-avatar.jpg" alt="Аватарка в профиле" class="profile__avatar">
         <div class="profile__info">
           <h1 class="profile__name">Жак-Ив Кусто</h1>
-          <button class="profile__edit-button" type="button"></button>
+          <button class="profile__edit-button" type="button" aria-label="edit"></button>
           <p class="profile__description">Исследователь океана</p>
         </div>
-        <button class="profile__add-button" type="button"></button>
+        <button class="profile__add-button" type="button" aria-label="add"></button>
       </section>
 
       <section class="cards">
@@ -30,42 +30,42 @@
           <img src="./images/card-karachayevsk.jpg" alt="Картинка для карточки Карачаевск" class="card__image">
           <div class="card__info">
             <h2 class="card__title">Карачаевск</h2>
-            <button class="card__like-button" type="button"></button>
+            <button class="card__like-button" type="button" aria-label="like"></button>
           </div>          
         </div>
         <div class="card">
           <img src="./images/card-elbrus.jpg" alt="Картинка для карточки Эльбрус" class="card__image">
           <div class="card__info">
             <h2 class="card__title">Гора Эльбрус</h2>
-            <button class="card__like-button" type="button"></button>
+            <button class="card__like-button" type="button" aria-label="like"></button>
           </div>          
         </div>
         <div class="card">
           <img src="./images/card-dombay.jpg" alt="Картинка для карточки Домбай" class="card__image">
           <div class="card__info">
             <h2 class="card__title">Домбай</h2>
-            <button class="card__like-button" type="button"></button>
+            <button class="card__like-button" type="button" aria-label="like"></button>
           </div>          
         </div>
         <div class="card">
           <img src="./images/card-elbrus.jpg" alt="Картинка для карточки Эльбрус" class="card__image">
           <div class="card__info">
             <h2 class="card__title">Гора Эльбрус</h2>
-            <button class="card__like-button" type="button"></button>
+            <button class="card__like-button" type="button" aria-label="like"></button>
           </div>          
         </div>
         <div class="card">
           <img src="./images/card-dombay.jpg" alt="Картинка для карточки Домбай" class="card__image">
           <div class="card__info">
             <h2 class="card__title">Домбай</h2>
-            <button class="card__like-button" type="button"></button>
+            <button class="card__like-button" type="button" aria-label="like"></button>
           </div>          
         </div>
         <div class="card">
           <img src="./images/card-karachayevsk.jpg" alt="Картинка для карточки Карачаево-Черкесия" class="card__image">
           <div class="card__info">
             <h2 class="card__title">Карачаево-Черкесия</h2>
-            <button class="card__like-button" type="button"></button>
+            <button class="card__like-button" type="button" aria-label="like"></button>
           </div>          
         </div>
       </section>
@@ -75,12 +75,12 @@
     </footer>
     <div class="popup">
       <div class="popup__container">
-        <button class="popup__close-button" type="button"></button>        
+        <button class="popup__close-button" type="button" aria-label="close"></button>        
         <form class="form" name="form">
           <h2 class="form__title">Редактировать профиль</h2>
-          <input class="form__input form__input_type_name" type="text" name="name-input">
-          <input class="form__input form__input_type_job" type="text" name="job-input">
-          <button class="form__save-button" type="submit">Сохранить</button>
+          <input class="form__input form__input_type_name" type="text" name="name-input" placeholder="Как вас зовут?" required>
+          <input class="form__input form__input_type_job" type="text" name="job-input" placeholder="Место работы" required>
+          <button class="form__save-button" type="submit" aria-label="save">Сохранить</button>
         </form>
       </div>
     </div>
