@@ -4,7 +4,7 @@
   grid-gap: 16px 18px;
   margin-right: 30px;
   align-content: center;
-  align-items: baseline;
+  align-items: center;
 }
 
 @media screen and (max-width: 1023px){
