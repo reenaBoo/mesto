@@ -74,6 +74,7 @@
     <footer class="footer">
       <p class="footer__copyright">© 2021 Mesto Russia</p>
     </footer>
+
     <div class="popup popup_type_edit">
       <div class="popup__container">
         <button class="popup__close-button" type="button" aria-label="close"></button>        
@@ -85,6 +86,19 @@
         </form>
       </div>
     </div>
+
+    <div class="popup popup_type_new-card">
+      <div class="popup__container">
+        <button class="popup__close-button" type="button" aria-label="close"></button>        
+        <form class="form" name="form">
+          <h2 class="form__title">Новое место</h2>
+          <input class="form__input form__input_type_mesto" type="text" name="mesto-input" placeholder="Название" required>
+          <input class="form__input form__input_type_url" type="text" name="link-input" placeholder="Ссылка на картинку" required>
+          <button class="form__save-button" type="submit">Создать</button>
+        </form>
+      </div>
+    </div>
+
   </div>
   <script src="./scripts/script.js"></script>
 </body>

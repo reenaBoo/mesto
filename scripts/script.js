@@ -1,37 +1,28 @@
-const popup = document.querySelector('.popup'); //секция с попапом
-let nameInput = popup.querySelector('.form__input_type_name'); //поле формы с именем пользователя
-let jobInput = popup.querySelector('.form__input_type_job'); //поле формы с описание работы пользователя
-const closeButton = popup.querySelector('.popup__close-button'); //кнопка закрытия формы
+const popupProfile = document.querySelector('.popup_type_edit');
+let nameInput = popupProfile.querySelector('.form__input_type_name');
+let jobInput = popupProfile.querySelector('.form__input_type_job');
+const popupProfileCloseButton = popupProfile.querySelector('.popup__close-button');
+//-----------------------------------------------------------------------------
 const profile = document.querySelector('.profile'); //секция с профилем
 let userName = profile.querySelector('.profile__name'); //имя пользователя
 let userJob = profile.querySelector('.profile__description'); //описание работы пользователя
 const editButton = profile.querySelector('.profile__edit-button'); //кнопка редактирования формы
-//5ый спринт-------------------------------------------------------------------------------------
-const card = document.querySelector('.card');
-const likeButton = card.querySelector('.card__like-button');
+const addCardButton = profile.querySelector('.profile__add-button');
+//-----------------------------------------------------------------------------
+const popupNewCard = document.querySelector('.popup_type_new-card');
+const popupNewCardCloseButton = popupNewCard.querySelector('.popup__close-button');
 
-//функция для добавления класса для открытии формы
-function openPopup() {
+function openPopup(popup) {
+  popup.classList.add('popup_opened');
+}
+
+function closePopup(popup) {
+  popup.classList.remove('popup_opened');
+}
+
+function updateProfileData() {
   nameInput.value = userName.textContent; //данные берутся из профиля
   jobInput.value = userJob.textContent; //данные берутся из профиля
-  popup.classList.add('popup_opened');
-};
-
-//функция для удаления класса для закрытия формы
-function closePopup() {
-  popup.classList.remove('popup_opened');
-};
-
-//функция для закрытия формы при нажатии на оверлей
-function overlayClick(event) {
-  if (event.target === event.currentTarget) {
-    closePopup();
-  }
-};
-
-//функция для добавления лайка
-function addLike() {
-  likeButton.classList.toggle('card__like-button_active');
 }
 
 //функция для сохранения внесенных в форму изменений
@@ -39,11 +30,22 @@ function formSubmitHandler (evt) {
   evt.preventDefault();
   userName.textContent = nameInput.value;
   userJob.textContent = jobInput.value;
-  closePopup();
+  closePopup(popupProfile);
 };
 
-popup.addEventListener('submit', formSubmitHandler); //сохраняем изменения в профиле
-closeButton.addEventListener('click', closePopup); //закрываем форму при нажатии на крестик
-popup.addEventListener('click', overlayClick); //закрываем форму при нажатии на оверлей
-editButton.addEventListener('click', openPopup); //открываем форму при нажатии кнопку редактирования профиля
-likeButton.addEventListener('click', addLike); //добавляем лайк
+editButton.addEventListener('click', () => {
+  openPopup(popupProfile);
+  updateProfileData();
+});
+
+popupProfileCloseButton.addEventListener('click', () => {
+  closePopup(popupProfile);
+});
+
+addCardButton.addEventListener('click', () => {
+  openPopup(popupNewCard);
+});
+
+popupNewCardCloseButton.addEventListener('click', () => {
+  closePopup(popupNewCard);
+});
