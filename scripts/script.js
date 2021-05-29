@@ -6,6 +6,9 @@ const profile = document.querySelector('.profile'); //секция с профи
 let userName = profile.querySelector('.profile__name'); //имя пользователя
 let userJob = profile.querySelector('.profile__description'); //описание работы пользователя
 const editButton = profile.querySelector('.profile__edit-button'); //кнопка редактирования формы
+//5ый спринт-------------------------------------------------------------------------------------
+const card = document.querySelector('.card');
+const likeButton = card.querySelector('.card__like-button');
 
 //функция для добавления класса для открытии формы
 function openPopup() {
@@ -26,6 +29,11 @@ function overlayClick(event) {
   }
 };
 
+//функция для добавления лайка
+function addLike() {
+  likeButton.classList.toggle('card__like-button_active');
+}
+
 //функция для сохранения внесенных в форму изменений
 function formSubmitHandler (evt) {
   evt.preventDefault();
@@ -38,3 +46,4 @@ popup.addEventListener('submit', formSubmitHandler); //сохраняем изм
 closeButton.addEventListener('click', closePopup); //закрываем форму при нажатии на крестик
 popup.addEventListener('click', overlayClick); //закрываем форму при нажатии на оверлей
 editButton.addEventListener('click', openPopup); //открываем форму при нажатии кнопку редактирования профиля
+likeButton.addEventListener('click', addLike); //добавляем лайк
