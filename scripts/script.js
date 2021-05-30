@@ -10,6 +10,8 @@ const editButton = profile.querySelector('.profile__edit-button'); //кнопк�
 const addCardButton = profile.querySelector('.profile__add-button');
 //-----------------------------------------------------------------------------
 const popupNewCard = document.querySelector('.popup_type_new-card');
+let mestoName = popupNewCard.querySelector('.form__input_type_mesto');
+let mestoLink = popupNewCard.querySelector('.form__input_type_url');
 const popupNewCardCloseButton = popupNewCard.querySelector('.popup__close-button');
 
 function openPopup(popup) {
@@ -26,7 +28,7 @@ function updateProfileData() {
 }
 
 //функция для сохранения внесенных в форму изменений
-function formSubmitHandler (evt) {
+function profileSubmitHandler(evt) {
   evt.preventDefault();
   userName.textContent = nameInput.value;
   userJob.textContent = jobInput.value;
@@ -41,6 +43,8 @@ editButton.addEventListener('click', () => {
 popupProfileCloseButton.addEventListener('click', () => {
   closePopup(popupProfile);
 });
+
+popupProfile.addEventListener('submit', profileSubmitHandler);
 
 addCardButton.addEventListener('click', () => {
   openPopup(popupNewCard);
@@ -111,4 +115,22 @@ function addCard(card) {
 initialCards.forEach((item) => {
   const card = getCard(item);
   addCard(card);
-})
+});
+
+function addCardSubmitHandler(evt) {
+  evt.preventDefault();
+  
+  let newCardName = mestoName.value;
+  let newCardLink = mestoLink.value;
+  
+  const addCardMass = {
+    name: newCardName,
+    link: newCardLink
+  };
+
+  const card = getCard(addCardMass);
+  addCard(card);
+  closePopup(popupNewCard);  
+};
+
+popupNewCard.addEventListener('submit', addCardSubmitHandler);
