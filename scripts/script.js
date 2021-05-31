@@ -111,7 +111,7 @@ function getCard(elem) {
 
   imageCard.addEventListener('click', function() {
     figureImage.src = imageCard.src;
-    figureTitle.textContent = titleCard.name;
+    figureTitle.textContent = titleCard.textContent;
     figureImage.alt = imageCard.alt;
     openPopup(popupImage);
   });
@@ -148,4 +148,4 @@ popupNewCard.addEventListener('submit', addCardSubmitHandler);
 
 popupImageCloseButton.addEventListener('click', () => {
   closePopup(popupImage);
-})
+});
