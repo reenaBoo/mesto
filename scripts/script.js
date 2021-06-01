@@ -10,8 +10,8 @@ const editButton = profile.querySelector('.profile__edit-button'); //кнопк�
 const addCardButton = profile.querySelector('.profile__add-button');
 //-----------------------------------------------------------------------------
 const popupNewCard = document.querySelector('.popup_type_new-card');
-const mestoName = popupNewCard.querySelector('.form__input_type_mesto');
-const mestoLink = popupNewCard.querySelector('.form__input_type_url');
+const placeName = popupNewCard.querySelector('.form__input_type_mesto');
+const placeLink = popupNewCard.querySelector('.form__input_type_url');
 const formNewCard = popupNewCard.querySelector('.form');
 const popupNewCardCloseButton = popupNewCard.querySelector('.popup__close-button');
 const cards = document.querySelector('.cards');
@@ -133,15 +133,15 @@ initialCards.forEach((item) => {
 function addCardSubmitHandler(evt) {
   evt.preventDefault();
   
-  const newCardName = mestoName.value;
-  const newCardLink = mestoLink.value;
+  const newCardName = placeName.value;
+  const newCardLink = placeLink.value;
   
-  const addCardMass = {
+  const cardData = {
     name: newCardName,
     link: newCardLink
   };
 
-  const card = getCard(addCardMass);
+  const card = getCard(cardData);
   addCard(card);
   formNewCard.reset();
   closePopup(popupNewCard);  
