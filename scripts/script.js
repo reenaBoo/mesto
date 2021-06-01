@@ -12,6 +12,7 @@ const addCardButton = profile.querySelector('.profile__add-button');
 const popupNewCard = document.querySelector('.popup_type_new-card');
 let mestoName = popupNewCard.querySelector('.form__input_type_mesto');
 let mestoLink = popupNewCard.querySelector('.form__input_type_url');
+const formNewCard = popupNewCard.querySelector('.form');
 const popupNewCardCloseButton = popupNewCard.querySelector('.popup__close-button');
 const cards = document.querySelector('.cards');
 //-----------------------------------------------------------------------------
@@ -57,6 +58,7 @@ addCardButton.addEventListener('click', () => {
 });
 
 popupNewCardCloseButton.addEventListener('click', () => {
+  formNewCard.reset();
   closePopup(popupNewCard);
 });
 
@@ -141,7 +143,8 @@ function addCardSubmitHandler(evt) {
 
   const card = getCard(addCardMass);
   addCard(card);
-  closePopup(popupNewCard);
+  formNewCard.reset();
+  closePopup(popupNewCard);  
 };
 
 popupNewCard.addEventListener('submit', addCardSubmitHandler);
