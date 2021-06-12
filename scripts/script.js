@@ -42,26 +42,6 @@ function profileSubmitHandler(evt) {
   closePopup(popupProfile);
 };
 
-editButton.addEventListener('click', () => {
-  openPopup(popupProfile);
-  updateProfileData();
-});
-
-popupProfileCloseButton.addEventListener('click', () => {
-  closePopup(popupProfile);
-});
-
-popupProfile.addEventListener('submit', profileSubmitHandler);
-
-addCardButton.addEventListener('click', () => {
-  openPopup(popupNewCard);
-});
-
-popupNewCardCloseButton.addEventListener('click', () => {
-  formNewCard.reset();
-  closePopup(popupNewCard);
-});
-
 function getCard(elem) {
   const template = document.querySelector('.template-card').content;
 
@@ -114,6 +94,26 @@ function addCardSubmitHandler(evt) {
   formNewCard.reset();
   closePopup(popupNewCard);  
 };
+
+editButton.addEventListener('click', () => {
+  openPopup(popupProfile);
+  updateProfileData();
+});
+
+popupProfileCloseButton.addEventListener('click', () => {
+  closePopup(popupProfile);
+});
+
+popupProfile.addEventListener('submit', profileSubmitHandler);
+
+addCardButton.addEventListener('click', () => {
+  openPopup(popupNewCard);
+});
+
+popupNewCardCloseButton.addEventListener('click', () => {
+  formNewCard.reset();
+  closePopup(popupNewCard);
+});
 
 popupNewCard.addEventListener('submit', addCardSubmitHandler);
 
