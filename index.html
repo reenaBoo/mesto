@@ -36,8 +36,8 @@
         <button class="popup__close-button" type="button" aria-label="close"></button>        
         <form class="form" name="form">
           <h2 class="form__title">Редактировать профиль</h2>
-          <input class="form__input form__input_type_name" type="text" name="name-input" placeholder="Как вас зовут?" required>
-          <input class="form__input form__input_type_job" type="text" name="job-input" placeholder="Место работы" required>
+          <input class="form__input form__input_type_name" type="text" name="name-input" placeholder="Как вас зовут?" minlength="2" maxlength="40" required>
+          <input class="form__input form__input_type_job" type="text" name="job-input" placeholder="Место работы" minlength="2" maxlength="200" required>
           <button class="form__save-button" type="submit">Сохранить</button>
         </form>
       </div>
@@ -48,8 +48,8 @@
         <button class="popup__close-button" type="button" aria-label="close"></button>        
         <form class="form" name="form">
           <h2 class="form__title">Новое место</h2>
-          <input class="form__input form__input_type_mesto" type="text" name="mesto-input" placeholder="Название" required>
-          <input class="form__input form__input_type_url" type="text" name="link-input" placeholder="Ссылка на картинку" required>
+          <input class="form__input form__input_type_mesto" type="text" name="mesto-input" placeholder="Название" minlength="2" maxlength="30" required>
+          <input class="form__input form__input_type_url" type="url" name="link-input" placeholder="Ссылка на картинку" required>
           <button class="form__save-button" type="submit">Создать</button>
         </form>
       </div>
