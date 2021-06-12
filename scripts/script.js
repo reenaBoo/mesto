@@ -60,9 +60,7 @@ function getCard(elem) {
     cardItem.remove();
   });
 
-  buttonLike.addEventListener('click', function(evt) {
-    evt.target.classList.toggle('card__like-button_active');
-  });
+  buttonLike.addEventListener('click', likeCard);
 
   imageCard.addEventListener('click', function() {
     figureImage.src = imageCard.src;
@@ -72,6 +70,10 @@ function getCard(elem) {
   });
 
   return card;
+}
+
+function likeCard(evt) {
+  evt.target.classList.toggle('card__like-button_active');
 }
 
 function addCard(card) {
