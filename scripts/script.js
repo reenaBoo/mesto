@@ -9,7 +9,7 @@ const editButton = profile.querySelector('.profile__edit-button'); //кнопк�
 const addCardButton = profile.querySelector('.profile__add-button');
 //-----------------------------------------------------------------------------
 const popupNewCard = document.querySelector('.popup_type_new-card');
-const placeName = popupNewCard.querySelector('.form__input_type_mesto');
+const placeName = popupNewCard.querySelector('.form__input_type_place');
 const placeLink = popupNewCard.querySelector('.form__input_type_url');
 const formNewCard = popupNewCard.querySelector('.form');
 const cards = document.querySelector('.cards');
@@ -126,7 +126,8 @@ popupProfile.addEventListener('click', (evt) => {
 
 popupNewCard.addEventListener('click', (evt) => {
   if (evt.target.classList.contains('popup') || evt.target.classList.contains('popup__close-button')) {
-    closePopup(popupNewCard)
+    formNewCard.reset();
+    closePopup(popupNewCard);
   }
 });
 
