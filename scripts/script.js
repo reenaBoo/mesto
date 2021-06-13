@@ -1,7 +1,6 @@
 const popupProfile = document.querySelector('.popup_type_edit');
 const nameInput = popupProfile.querySelector('.form__input_type_name');
 const jobInput = popupProfile.querySelector('.form__input_type_job');
-const popupProfileCloseButton = popupProfile.querySelector('.popup__close-button');
 //-----------------------------------------------------------------------------
 const profile = document.querySelector('.profile'); //секция с профилем
 const userName = profile.querySelector('.profile__name'); //имя пользователя
@@ -13,13 +12,11 @@ const popupNewCard = document.querySelector('.popup_type_new-card');
 const placeName = popupNewCard.querySelector('.form__input_type_mesto');
 const placeLink = popupNewCard.querySelector('.form__input_type_url');
 const formNewCard = popupNewCard.querySelector('.form');
-const popupNewCardCloseButton = popupNewCard.querySelector('.popup__close-button');
 const cards = document.querySelector('.cards');
 //-----------------------------------------------------------------------------
 const popupImage = document.querySelector('.popup_type_image');
 const figureImage = popupImage.querySelector('.figure__image');
 const figureTitle = popupImage.querySelector('.figure__title');
-const popupImageCloseButton = popupImage.querySelector('.popup__close-button');
 
 function openPopup(popup) {
   document.addEventListener('keydown', escUpHandler);
