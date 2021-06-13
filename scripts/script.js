@@ -98,8 +98,6 @@ function addCardSubmitHandler(evt) {
 
 //функция закрытия попапа по ESC
 function escUpHandler(evt) {
-  evt.preventDefault();
-
   const activePopup = document.querySelector('.popup_opened');
   if (evt.key === 'Escape') {
     closePopup(activePopup);
