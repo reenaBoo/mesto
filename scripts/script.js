@@ -22,10 +22,12 @@ const figureTitle = popupImage.querySelector('.figure__title');
 const popupImageCloseButton = popupImage.querySelector('.popup__close-button');
 
 function openPopup(popup) {
+  document.addEventListener('keydown', escUpHandler);
   popup.classList.add('popup_opened');
 }
 
 function closePopup(popup) {
+  document.removeEventListener('keydown', escUpHandler);
   popup.classList.remove('popup_opened');
 }
 
@@ -97,13 +99,19 @@ function addCardSubmitHandler(evt) {
   closePopup(popupNewCard);  
 };
 
+//функция закрытия попапа по ESC
+function escUpHandler(evt) {
+  evt.preventDefault();
+
+  const activePopup = document.querySelector('.popup_opened');
+  if (evt.key === 'Escape') {
+    closePopup(activePopup);
+  }
+};
+
 editButton.addEventListener('click', () => {
   openPopup(popupProfile);
   updateProfileData();
-});
-
-popupProfileCloseButton.addEventListener('click', () => {
-  closePopup(popupProfile);
 });
 
 popupProfile.addEventListener('submit', profileSubmitHandler);
@@ -112,13 +120,23 @@ addCardButton.addEventListener('click', () => {
   openPopup(popupNewCard);
 });
 
-popupNewCardCloseButton.addEventListener('click', () => {
-  formNewCard.reset();
-  closePopup(popupNewCard);
-});
-
 popupNewCard.addEventListener('submit', addCardSubmitHandler);
 
-popupImageCloseButton.addEventListener('click', () => {
-  closePopup(popupImage);
+//слушатели на закрытие попапов при нажатии на кнопку или оверлей
+popupProfile.addEventListener('click', (evt) => {
+  if (evt.target.classList.contains('popup') || evt.target.classList.contains('popup__close-button')) {
+    closePopup(popupProfile)
+  }
+});
+
+popupNewCard.addEventListener('click', (evt) => {
+  if (evt.target.classList.contains('popup') || evt.target.classList.contains('popup__close-button')) {
+    closePopup(popupNewCard)
+  }
+});
+
+popupImage.addEventListener('click', (evt) => {
+  if (evt.target.classList.contains('popup') || evt.target.classList.contains('popup__close-button')) {
+    closePopup(popupImage)
+  }
 });
