@@ -20,6 +20,7 @@ const figureTitle = popupImage.querySelector('.figure__title');
 
 function openPopup(popup) {
   document.addEventListener('keydown', escUpHandler);
+  resetErrorMessages(popup);
   popup.classList.add('popup_opened');
 }
 
@@ -102,6 +103,19 @@ function escUpHandler(evt) {
   if (evt.key === 'Escape') {
     closePopup(activePopup);
   }
+};
+
+//функция сброса текстов ошибок
+function resetErrorMessages(formElement) {
+  const errorText = formElement.querySelectorAll('.form__input-error');
+  errorText.forEach((error) => {
+    error.classList.remove('form__input-error_active');
+    error.textContent = '';
+  });
+  const errorInput = formElement.querySelectorAll('.form__input');
+  errorInput.forEach((error) => {
+    error.classList.remove('form__input_type_error');
+  });
 };
 
 editButton.addEventListener('click', () => {
