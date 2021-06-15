@@ -139,21 +139,40 @@ addCardButton.addEventListener('click', () => {
 popupNewCard.addEventListener('submit', handleAddCardFormSubmit);
 
 //слушатели на закрытие попапов при нажатии на кнопку или оверлей
-popupProfile.addEventListener('click', (evt) => {
-  if (evt.target.classList.contains('popup') || evt.target.classList.contains('popup__close-button')) {
+popupProfile.addEventListener('mousedown', (evt) => {
+  if (evt.target.classList.contains('popup')) {
     closePopup(popupProfile)
   }
 });
 
-popupNewCard.addEventListener('click', (evt) => {
-  if (evt.target.classList.contains('popup') || evt.target.classList.contains('popup__close-button')) {
+popupProfile.addEventListener('click', (evt) => {
+  if (evt.target.classList.contains('popup__close-button')) {
+    closePopup(popupProfile)
+  }
+});
+
+popupNewCard.addEventListener('mousedown', (evt) => {
+  if (evt.target.classList.contains('popup')) {
     formNewCard.reset();
     closePopup(popupNewCard);
   }
 });
 
+popupNewCard.addEventListener('click', (evt) => {
+  if (evt.target.classList.contains('popup__close-button')) {
+    formNewCard.reset();
+    closePopup(popupNewCard);
+  }
+});
+
+popupImage.addEventListener('mousedown', (evt) => {
+  if (evt.target.classList.contains('popup')) {
+    closePopup(popupImage)
+  }
+});
+
 popupImage.addEventListener('click', (evt) => {
-  if (evt.target.classList.contains('popup') || evt.target.classList.contains('popup__close-button')) {
+  if (evt.target.classList.contains('popup__close-button')) {
     closePopup(popupImage)
   }
 });
