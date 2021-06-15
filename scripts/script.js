@@ -1,22 +1,24 @@
 const popupProfile = document.querySelector('.popup_type_edit');
 const nameInput = popupProfile.querySelector('.form__input_type_name');
 const jobInput = popupProfile.querySelector('.form__input_type_job');
-//-----------------------------------------------------------------------------
+//---------------------------попап с профилем-------------------------------------
 const profile = document.querySelector('.profile'); //секция с профилем
 const userName = profile.querySelector('.profile__name'); //имя пользователя
 const userJob = profile.querySelector('.profile__description'); //описание работы пользователя
 const editButton = profile.querySelector('.profile__edit-button'); //кнопка редактирования формы
 const addCardButton = profile.querySelector('.profile__add-button');
-//-----------------------------------------------------------------------------
+//----------------------попап добавления карточки---------------------------------
 const popupNewCard = document.querySelector('.popup_type_new-card');
 const placeName = popupNewCard.querySelector('.form__input_type_place');
 const placeLink = popupNewCard.querySelector('.form__input_type_url');
 const formNewCard = popupNewCard.querySelector('.form');
 const cards = document.querySelector('.cards');
-//-----------------------------------------------------------------------------
+//-------------------------попап просмотра фото-----------------------------------
 const popupImage = document.querySelector('.popup_type_image');
 const figureImage = popupImage.querySelector('.figure__image');
 const figureTitle = popupImage.querySelector('.figure__title');
+//-------------------------------шаблон-------------------------------------------
+const template = document.querySelector('.template-card').content;
 
 function openPopup(popup) {
   document.addEventListener('keydown', handleEscUp);  
@@ -42,8 +44,6 @@ function handleProfileFormSubmit(evt) {
 };
 
 function getCard(elem) {
-  const template = document.querySelector('.template-card').content;
-
   const card = template.querySelector('.card').cloneNode(true);
   const buttonDeleteCard = card.querySelector('.card__delete-button');
   const imageCard = card.querySelector('.card__image');
