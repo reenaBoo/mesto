@@ -19,8 +19,7 @@ const figureImage = popupImage.querySelector('.figure__image');
 const figureTitle = popupImage.querySelector('.figure__title');
 
 function openPopup(popup) {
-  document.addEventListener('keydown', escUpHandler);
-  resetErrorMessages(popup);
+  document.addEventListener('keydown', escUpHandler);  
   popup.classList.add('popup_opened');
 }
 
@@ -125,6 +124,7 @@ function resetErrorMessages(formElement) {
 };
 
 editButton.addEventListener('click', () => {
+  resetErrorMessages(popupProfile);
   openPopup(popupProfile);
   updateProfileData();
 });
@@ -132,6 +132,7 @@ editButton.addEventListener('click', () => {
 popupProfile.addEventListener('submit', profileSubmitHandler);
 
 addCardButton.addEventListener('click', () => {
+  resetErrorMessages(popupNewCard);
   openPopup(popupNewCard);
 });
 
