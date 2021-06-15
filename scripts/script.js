@@ -19,12 +19,12 @@ const figureImage = popupImage.querySelector('.figure__image');
 const figureTitle = popupImage.querySelector('.figure__title');
 
 function openPopup(popup) {
-  document.addEventListener('keydown', escUpHandler);  
+  document.addEventListener('keydown', handleEscUp);  
   popup.classList.add('popup_opened');
 }
 
 function closePopup(popup) {
-  document.removeEventListener('keydown', escUpHandler);
+  document.removeEventListener('keydown', handleEscUp);
   popup.classList.remove('popup_opened');
 }
 
@@ -34,7 +34,7 @@ function updateProfileData() {
 }
 
 //функция для сохранения внесенных в форму изменений
-function profileSubmitHandler(evt) {
+function handleProfileFormSubmit(evt) {
   evt.preventDefault();
   userName.textContent = nameInput.value;
   userJob.textContent = jobInput.value;
@@ -85,7 +85,7 @@ initialCards.forEach((item) => {
   addCard(card);
 });
 
-function addCardSubmitHandler(evt) {
+function handleAddCardFormSubmit(evt) {
   evt.preventDefault();
   
   const newCardName = placeName.value;
@@ -103,7 +103,7 @@ function addCardSubmitHandler(evt) {
 };
 
 //функция закрытия попапа по ESC
-function escUpHandler(evt) {
+function handleEscUp(evt) {
   const activePopup = document.querySelector('.popup_opened');
   if (evt.key === 'Escape') {
     closePopup(activePopup);
@@ -129,14 +129,14 @@ editButton.addEventListener('click', () => {
   updateProfileData();
 });
 
-popupProfile.addEventListener('submit', profileSubmitHandler);
+popupProfile.addEventListener('submit', handleProfileFormSubmit);
 
 addCardButton.addEventListener('click', () => {
   resetErrorMessages(popupNewCard);
   openPopup(popupNewCard);
 });
 
-popupNewCard.addEventListener('submit', addCardSubmitHandler);
+popupNewCard.addEventListener('submit', handleAddCardFormSubmit);
 
 //слушатели на закрытие попапов при нажатии на кнопку или оверлей
 popupProfile.addEventListener('click', (evt) => {
