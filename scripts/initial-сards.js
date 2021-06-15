@@ -24,8 +24,3 @@ const initialCards = [
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
   }
 ];
-
-initialCards.forEach((item) => {
-  const card = getCard(item);
-  addCard(card);
-});

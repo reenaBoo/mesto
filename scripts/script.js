@@ -80,6 +80,12 @@ function addCard(card) {
   cards.prepend(card);
 }
 
+//рендер карточек
+initialCards.forEach((item) => {
+  const card = getCard(item);
+  addCard(card);
+});
+
 function addCardSubmitHandler(evt) {
   evt.preventDefault();
   
