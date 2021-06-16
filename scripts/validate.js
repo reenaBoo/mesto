@@ -64,7 +64,28 @@ const obj = ({
   submitButtonSelector: '.form__save-button',
   inactiveButtonClass: 'form__save-button_disabled',
   inputErrorClass: 'form__input_type_error',
-  errorClass: 'form__input-error_active'
+  errorClass: 'form__input-error_active',
+  inputErrorText: '.form__input-error',
 });
 
 enableValidation(obj);
+
+//функция сброса текстов ошибок
+function resetErrorMessages(popup) {
+  const errorText = popup.querySelectorAll(obj.inputErrorText);
+  errorText.forEach((error) => {
+    error.classList.remove(obj.errorClass);
+    error.textContent = '';
+  });
+  const errorInput = popup.querySelectorAll(obj.inputSelector);
+  errorInput.forEach((error) => {
+    error.classList.remove(obj.inputErrorClass);
+  });
+};
+
+//функция блокировки кнопки
+function disableButton(popup) {
+  const button = popup.querySelector(obj.submitButtonSelector);
+  button.setAttribute('disabled', 'disabled');
+  button.classList.add('form__save-button_disabled');
+}
