@@ -34,7 +34,7 @@
     <div class="popup popup_type_edit">
       <div class="popup__container">
         <button class="popup__close-button" type="button" aria-label="Закрыть"></button>        
-        <form class="form" name="form-profile" novalidate>
+        <form class="form form_type_user" name="form-profile" novalidate>
           <h2 class="form__title">Редактировать профиль</h2>
           <input id="name-input" class="form__input form__input_type_name" type="text" name="name-input" placeholder="Как вас зовут?" minlength="2" maxlength="40" required>
           <span class="name-input-error form__input-error"></span>
@@ -48,7 +48,7 @@
     <div class="popup popup_type_new-card">
       <div class="popup__container">
         <button class="popup__close-button" type="button" aria-label="Закрыть"></button>        
-        <form class="form" name="form-place" novalidate>
+        <form class="form form_type_card" name="form-place" novalidate>
           <h2 class="form__title">Новое место</h2>
           <input id="place-input" class="form__input form__input_type_place" type="text" name="place-input" placeholder="Название" minlength="2" maxlength="30" required>
           <span class="place-input-error form__input-error"></span>
@@ -80,10 +80,6 @@
       </div>
     </template>
   </div>
-  <script src="./scripts/initial-сards.js"></script>
-  <script src="./scripts/index.js"></script>  
-  <script src="./scripts/validate.js"></script>
-  <script src="./scripts/Card.js"></script>
-  <script src="./scripts/FormValidator.js"></script>
+  <script type="module" src="./scripts/index.js"></script>
 </body>
 </html>

@@ -1,8 +1,11 @@
-class Card {
+import {popupImage, figureImage, figureTitle} from './constants.js';
+import {openPopup} from './utils.js';
+
+export class Card {
   constructor(data) {
     this._text = data.name;
     this._image = data.link;
-  }
+  };
 
   _getTemplate() {
     const cardElement = document
@@ -13,12 +16,13 @@ class Card {
     
   // вернём DOM-элемент карточки
     return cardElement;
-  }
+  };
 
   generateCard() {
     // Запишем разметку в приватное поле _element. 
     // Так у других элементов появится доступ к ней.
     this._element = this._getTemplate();
+    this._setEventListeners();
   
     // Добавим данные
     this._element.querySelector('.card__image').src = this._image;
@@ -27,12 +31,32 @@ class Card {
   
     // Вернём элемент наружу
     return this._element;
-  } 
-}
+  };
 
-initialCards.forEach((item) => {
-  const card = new Card(item);
-  const cardElement = card.generateCard();
+  _setEventListeners() {
+    this._element.querySelector('.card__like-button').addEventListener('click', () => {
+      this._handleCardLike();
+    });
+    this._element.querySelector('.card__delete-button').addEventListener('click', () => {
+      this._handleCardDelete();
+    });
+    this._element.querySelector('.card__image').addEventListener('click', () => {
+      this._hadleCardOpen();
+      openPopup(popupImage);
+    });
+  };
 
-  document.querySelector('.cards').append(cardElement);
-}); 
+  _handleCardLike() {
+    this._element.querySelector('.card__like-button').classList.toggle('card__like-button_active');
+  };
+
+  _handleCardDelete() {
+    this._element.remove();
+  };
+
+  _hadleCardOpen() {
+    figureImage.src = this._element.querySelector('.card__image').src;
+    figureTitle.textContent = this._element.querySelector('.card__title').textContent;
+    figureImage.alt = this._element.querySelector('.card__image').alt;
+  };
+};
