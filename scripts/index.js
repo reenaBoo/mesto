@@ -21,7 +21,7 @@ const formNewCard = popupNewCard.querySelector('.form');
 function updateProfileData() {
   nameInput.value = userName.textContent; //данные берутся из профиля
   jobInput.value = userJob.textContent; //данные берутся из профиля
-  userValidate.resetErrorText(); //импорт
+  userValidate.resetErrorText();
 }
 
 //функция для сохранения внесенных в форму изменений
@@ -43,7 +43,7 @@ function handleAddCardFormSubmit(evt) {
     link: newCardLink
   };
 
-  const card = new Card(cardData); // импорт
+  const card = new Card(cardData);
   const cardElement = card.generateCard();
   document.querySelector('.cards').prepend(cardElement);
   formNewCard.reset();
@@ -74,7 +74,7 @@ editButton.addEventListener('click', () => {
 popupProfile.addEventListener('submit', handleProfileFormSubmit);
 
 addCardButton.addEventListener('click', () => {
-  cardValidate.resetErrorText(); //импорт функции
+  cardValidate.resetErrorText();
   openPopup(popupNewCard);
 });
 
