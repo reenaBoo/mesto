@@ -35,15 +35,12 @@ function handleProfileFormSubmit(evt) {
 function handleAddCardFormSubmit(evt) {
   evt.preventDefault();
   
-  const newCardName = placeName.value;
-  const newCardLink = placeLink.value;
-  
   const cardData = {
-    name: newCardName,
-    link: newCardLink
+    name: placeName.value,
+    link: placeLink.value
   };
 
-  const card = new Card(cardData);
+  const card = new Card(cardData, '.template-card');
   const cardElement = card.generateCard();
   document.querySelector('.cards').prepend(cardElement);
   formNewCard.reset();
@@ -52,7 +49,7 @@ function handleAddCardFormSubmit(evt) {
 
 //-----------------рендер карточек------------------------------
 initialCards.forEach((item) => {
-  const card = new Card(item);
+  const card = new Card(item, '.template-card');
   const cardElement = card.generateCard();
 
   document.querySelector('.cards').prepend(cardElement);

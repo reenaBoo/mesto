@@ -2,14 +2,15 @@ import {popupImage, figureImage, figureTitle} from './constants.js';
 import {openPopup} from './utils.js';
 
 export class Card {
-  constructor(data) {
+  constructor(data, template) {
     this._text = data.name;
     this._image = data.link;
+    this._cardSelector = template;
   };
 
   _getTemplate() {
     const cardElement = document
-    .querySelector('.template-card')
+    .querySelector(this._cardSelector)
     .content
     .querySelector('.card')
     .cloneNode(true);
@@ -22,12 +23,14 @@ export class Card {
     // Запишем разметку в приватное поле _element. 
     // Так у других элементов появится доступ к ней.
     this._element = this._getTemplate();
+    this._cardImage = this._element.querySelector('.card__image');
+    this._cardTitle = this._element.querySelector('.card__title');
     this._setEventListeners();
   
     // Добавим данные
-    this._element.querySelector('.card__image').src = this._image;
-    this._element.querySelector('.card__image').alt = this._text;
-    this._element.querySelector('.card__title').textContent = this._text;
+    this._cardImage.src = this._image;
+    this._cardImage.alt = this._text;
+    this._cardTitle.textContent = this._text;
   
     // Вернём элемент наружу
     return this._element;
@@ -55,8 +58,10 @@ export class Card {
   };
 
   _hadleCardOpen() {
-    figureImage.src = this._element.querySelector('.card__image').src;
-    figureTitle.textContent = this._element.querySelector('.card__title').textContent;
-    figureImage.alt = this._element.querySelector('.card__image').alt;
+    this._name = this._element.querySelector('.card__title');
+    this._link = this._element.querySelector('.card__image');
+    figureImage.src = this._link.src;
+    figureTitle.textContent = this._name.textContent;
+    figureImage.alt = this._link.alt;
   };
 };
