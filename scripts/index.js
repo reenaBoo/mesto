@@ -1,5 +1,6 @@
 import {Card} from './Card.js';
 import {FormValidator} from './FormValidator.js';
+import {Section} from './Section.js';
 import {initialCards, obj, userForm, cardForm, popupImage} from './constants.js';
 import {openPopup, closePopup} from './utils.js';
 
@@ -47,13 +48,15 @@ function handleAddCardFormSubmit(evt) {
   closePopup(popupNewCard);
 };
 
-//-----------------рендер карточек------------------------------
-initialCards.forEach((item) => {
-  const card = new Card(item, '.template-card');
-  const cardElement = card.generateCard();
+const renderCards = new Section({
+  items: initialCards,
+  renderer: (item) => {
+    const card = new Card(item, '.template-card');
+    renderCards.addItem(card.generateCard());
+  },  
+}, '.cards');
 
-  document.querySelector('.cards').prepend(cardElement);
-}); 
+renderCards.renderItems();
 
 //-------------------валидация----------------------------------
 const userValidate = new FormValidator(obj, userForm);
