@@ -1,11 +1,9 @@
-import {popupImage, figureImage, figureTitle} from './constants.js';
-import {openPopup} from './utils.js';
-
 export class Card {
-  constructor(data, template) {
+  constructor(data, template, handleCardClick) {
     this._text = data.name;
     this._image = data.link;
     this._cardSelector = template;
+    this._handleCardClick = handleCardClick;
   };
 
   _getTemplate() {
@@ -43,9 +41,8 @@ export class Card {
     this._element.querySelector('.card__delete-button').addEventListener('click', () => {
       this._handleCardDelete();
     });
-    this._element.querySelector('.card__image').addEventListener('click', () => {
-      this._hadleCardOpen();
-      openPopup(popupImage);
+    this._cardImage.addEventListener('click', () => {
+      this._handleCardClick(this._text, this._image);
     });
   };
 
@@ -55,13 +52,5 @@ export class Card {
 
   _handleCardDelete() {
     this._element.remove();
-  };
-
-  _hadleCardOpen() {
-    this._name = this._element.querySelector('.card__title');
-    this._link = this._element.querySelector('.card__image');
-    figureImage.src = this._link.src;
-    figureTitle.textContent = this._name.textContent;
-    figureImage.alt = this._link.alt;
   };
 };
