@@ -4,7 +4,7 @@ export class PopupWithImage extends Popup {
     super(popup);
   }
 
-  openImage({name, link}) {
+  openImage(name, link) {
     this._popupImage = this._popup.querySelector('.figure__image');
     this._popupImage.src = link;
     this._popupImage.alt = name;

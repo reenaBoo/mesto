@@ -42,7 +42,7 @@ export class Card {
       this._handleCardDelete();
     });
     this._cardImage.addEventListener('click', () => {
-      this._handleCardClick(this._text, this._image);
+      this._handleCardClick();
     });
   };
 

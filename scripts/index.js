@@ -6,7 +6,7 @@ import {PopupWithImage} from './PopupWithImage.js';
 import {PopupWithForm} from './PopupWithForm.js';
 import {UserInfo} from './UserInfo.js';
 import {initialCards, obj, userForm, cardForm, popupImage, figureImage, figureTitle} from './constants.js';
-import {openPopup, closePopup} from './utils.js';
+// import {openPopup, closePopup} from './utils.js';
 
 const popupProfile = document.querySelector('.popup_type_edit');
 const nameInput = popupProfile.querySelector('.form__input_type_name');
@@ -23,57 +23,40 @@ const placeName = popupNewCard.querySelector('.form__input_type_place');
 const placeLink = popupNewCard.querySelector('.form__input_type_url');
 const formNewCard = popupNewCard.querySelector('.form');
 
-function updateProfileData() {
-  // nameInput.value = userName.textContent; //данные берутся из профиля
-  // jobInput.value = userJob.textContent; //данные берутся из профиля
-  // setUserInfo(nameUpdate, aboutUpdate) {
-  //   this.getUserInfo();
-  //   this._userName.textContent = nameUpdate;
-  //   this._userAbout.textContent = aboutUpdate;
-
+// function handleAddCardFormSubmit(evt) {
+//   evt.preventDefault();
   
-}
+//   const cardData = {
+//     name: placeName.value,
+//     link: placeLink.value
+//   };
 
-//функция для сохранения внесенных в форму изменений
-function handleProfileFormSubmit(evt) {
-  evt.preventDefault();
-  userName.textContent = nameInput.value;
-  userJob.textContent = jobInput.value;
-  closePopup(popupProfile);
-};
-
-function handleAddCardFormSubmit(evt) {
-  evt.preventDefault();
-  
-  const cardData = {
-    name: placeName.value,
-    link: placeLink.value
-  };
-
-  const card = new Card(cardData, '.template-card', handleCardClick);
-  const cardElement = card.generateCard();
-  document.querySelector('.cards').prepend(cardElement);
-  formNewCard.reset();
-  closePopup(popupNewCard);
-};
-
-function handleCardClick(name, link) {
-  figureImage.src = link;
-  figureImage.alt = name;
-  figureTitle.textContent = name;
-  openPopup(popupImage);
-};
+//   const card = new Card(cardData, '.template-card', handleCardClick);
+//   const cardElement = card.generateCard();
+//   document.querySelector('.cards').prepend(cardElement);
+//   formNewCard.reset();
+//   closePopup(popupNewCard);
+// };
 
 //---------------рендер карточек--------------------------------
 const renderCards = new Section({
   items: initialCards,
   renderer: (item) => {
-    const card = new Card(item, '.template-card', handleCardClick);
+    const card = new Card(item, '.template-card', (() => {
+      popupWithImage.openImage(item.name, item.link);
+    }));
     renderCards.addItem(card.generateCard());
   },  
 }, '.cards');
 
 renderCards.renderItems();
+//--------------добавление карточки-----------------------------
+const popupAddCard = new PopupWithForm('.popup_type_new-card');
+popupAddCard.setEventListeners();
+
+function submitNewCard() {
+  
+}
 
 //-------------------валидация----------------------------------
 const userValidate = new FormValidator(obj, userForm);
@@ -81,12 +64,15 @@ const cardValidate = new FormValidator(obj, cardForm);
 
 userValidate.enableValidation();
 cardValidate.enableValidation();
-//--------------------слушатели----------------------------------
+//--------------------------------------------------------------
+const popupWithImage = new PopupWithImage('.popup_type_image');
+popupWithImage.setEventListeners();
+
+const userData = new UserInfo(userName, userJob);
+
 function handleUserInfo (data) {
   userData.setUserInfo(data.user, data.about);
 }
-
-const userData = new UserInfo(userName, userJob);
 
 const popupUser = new PopupWithForm('.popup_type_edit', handleUserInfo);
 popupUser.setEventListeners();
@@ -98,6 +84,12 @@ editButton.addEventListener('click', () => {
   userValidate.resetErrorText();
 });
 
+addCardButton.addEventListener('click', () => {
+  cardValidate.resetErrorText();
+  popupAddCard.open();
+})
+
+//--------------------слушатели----------------------------------
 // popupProfile.addEventListener('submit', handleProfileFormSubmit);
 
 // addCardButton.addEventListener('click', () => {
