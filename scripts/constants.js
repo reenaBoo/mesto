@@ -1,4 +1,4 @@
-export {initialCards, obj, userForm, cardForm, popupImage, figureImage, figureTitle};
+export {initialCards, obj, userForm, cardForm, editButton, addCardButton, userName, userJob, newCardData};
 
 const initialCards = [
   {
@@ -35,10 +35,16 @@ const obj = ({
   errorClass: 'form__input-error_active'
 });
 
+const userName = document.querySelector('.profile__name');
+const userJob = document.querySelector('.profile__description');
+
 const userForm = document.querySelector('.form_type_user');
 const cardForm = document.querySelector('.form_type_card');
 
-//-------------------------попап просмотра фото-----------------------------------
-const popupImage = document.querySelector('.popup_type_image');
-const figureImage = popupImage.querySelector('.figure__image');
-const figureTitle = popupImage.querySelector('.figure__title');
+const newCardData = {
+  name: cardForm.name,
+  link: cardForm.link
+}
+
+const editButton = document.querySelector('.profile__edit-button');
+const addCardButton = document.querySelector('.profile__add-button');
