@@ -41,9 +41,12 @@ const userJob = document.querySelector('.profile__description');
 const userForm = document.querySelector('.form_type_user');
 const cardForm = document.querySelector('.form_type_card');
 
+const name = cardForm.querySelector('.form__input_type_place');
+const url = cardForm.querySelector('.form__input_type_url');
+
 const newCardData = {
-  name: cardForm.name,
-  link: cardForm.link
+  name: name.value,
+  link: url.value
 }
 
 const editButton = document.querySelector('.profile__edit-button');

@@ -17,24 +17,16 @@ const renderCards = new Section({
   },  
 }, '.cards');
 
-console.log(renderCards);
-
 renderCards.renderItems();
 //--------------добавление карточки-----------------------------
 const popupAddCard = new PopupWithForm('.popup_type_new-card', () => {
-  const aaaa = new Section({
-    renderer: (item) => {
-      const card = new Card(item, '.template-card', (() => {
-        popupWithImage.openImage(item.name, item.link);
-      }));
-      aaaa.addItem(card.generateCard());
-    },
-  }, '.cards');
+
+  const card = new Card(newCardData, '.template-card', (() => {
+    popupWithImage.openImage(newCardData.name, newCardData.link);
+  }));
+  renderCards.addItem(card.generateCard());
 });
 
-console.log(popupAddCard._handleSubmit());
-// popupAddCard.setEventListeners('sub', (evt) => 
-//popupAddCard.handleSubmit);
 popupAddCard.setEventListeners();
 //-------------------валидация----------------------------------
 const userValidate = new FormValidator(obj, userForm);
