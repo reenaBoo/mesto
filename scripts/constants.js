@@ -1,4 +1,4 @@
-export {initialCards, obj, userForm, cardForm, editButton, addCardButton, userName, userJob, newCardData};
+export {name, url, initialCards, obj, userForm, cardForm, editButton, addCardButton, userName, userJob};
 
 const initialCards = [
   {
@@ -43,11 +43,6 @@ const cardForm = document.querySelector('.form_type_card');
 
 const name = cardForm.querySelector('.form__input_type_place');
 const url = cardForm.querySelector('.form__input_type_url');
-
-const newCardData = {
-  name: name.value,
-  link: url.value
-}
 
 const editButton = document.querySelector('.profile__edit-button');
 const addCardButton = document.querySelector('.profile__add-button');

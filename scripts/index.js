@@ -4,7 +4,7 @@ import {Section} from './Section.js';
 import {PopupWithImage} from './PopupWithImage.js';
 import {PopupWithForm} from './PopupWithForm.js';
 import {UserInfo} from './UserInfo.js';
-import {initialCards, obj, userForm, cardForm, editButton, addCardButton, userName, userJob, newCardData} from './constants.js';
+import {name, url, initialCards, obj, userForm, cardForm, editButton, addCardButton, userName, userJob} from './constants.js';
 
 //---------------рендер карточек--------------------------------
 const renderCards = new Section({
@@ -14,13 +14,16 @@ const renderCards = new Section({
       popupWithImage.openImage(item.name, item.link);
     }));
     renderCards.addItem(card.generateCard());
-  },  
+  },
 }, '.cards');
 
 renderCards.renderItems();
 //--------------добавление карточки-----------------------------
 const popupAddCard = new PopupWithForm('.popup_type_new-card', () => {
-
+  const newCardData = {
+    name: name.value,
+    link: url.value
+  }
   const card = new Card(newCardData, '.template-card', (() => {
     popupWithImage.openImage(newCardData.name, newCardData.link);
   }));
