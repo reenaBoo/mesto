@@ -4,31 +4,30 @@ import {Section} from '../components/Section.js';
 import {PopupWithImage} from '../components/PopupWithImage.js';
 import {PopupWithForm} from '../components/PopupWithForm.js';
 import {UserInfo} from '../components/UserInfo.js';
-import {name, url, initialCards, obj, userForm, cardForm, editButton, addCardButton, userName, userJob} from '../utils/constants.js';
+import {initialCards, obj, userForm, cardForm, editButton, addCardButton, userName, userJob} from '../utils/constants.js';
 import './index.css';
 
+const createCard = (item) => {
+  return new Card(item, '.template-card', (() => {
+    popupWithImage.openImage(item.name, item.link);
+  }));  
+};
+
+const renderCard = (item) => {
+  renderCards.addItem(createCard(item).generateCard());
+};
 //---------------рендер карточек--------------------------------
 const renderCards = new Section({
   items: initialCards,
   renderer: (item) => {
-    const card = new Card(item, '.template-card', (() => {
-      popupWithImage.openImage(item.name, item.link);
-    }));
-    renderCards.addItem(card.generateCard());
+    renderCard(item);
   },
 }, '.cards');
 
 renderCards.renderItems();
 //--------------добавление карточки-----------------------------
-const popupAddCard = new PopupWithForm('.popup_type_new-card', () => {
-  const newCardData = {
-    name: name.value,
-    link: url.value
-  }
-  const card = new Card(newCardData, '.template-card', (() => {
-    popupWithImage.openImage(newCardData.name, newCardData.link);
-  }));
-  renderCards.addItem(card.generateCard());
+const popupAddCard = new PopupWithForm('.popup_type_new-card', (data) => {
+  renderCard(data);
 });
 
 popupAddCard.setEventListeners();
@@ -52,8 +51,9 @@ const popupUser = new PopupWithForm('.popup_type_edit', handleUserInfo);
 popupUser.setEventListeners();
 
 editButton.addEventListener('click', () => {
-  userForm.user.value = userData.getUserInfo().user;
-  userForm.about.value = userData.getUserInfo().about;
+  const currentUserInfo = userData.getUserInfo();
+  userForm.user.value = currentUserInfo.user;
+  userForm.about.value = currentUserInfo.about;
   userValidate.resetErrorText();
   popupUser.open();
 });
