@@ -4,8 +4,11 @@ import {Section} from '../components/Section.js';
 import {PopupWithImage} from '../components/PopupWithImage.js';
 import {PopupWithForm} from '../components/PopupWithForm.js';
 import {UserInfo} from '../components/UserInfo.js';
+import {Api} from '../components/Api.js';
 import {initialCards, obj, userForm, cardForm, editButton, addCardButton, userName, userJob} from '../utils/constants.js';
 import './index.css';
+
+const api = new Api('cohort-26', 'https://nomoreparties.co/v1/', '254abe0c-6cde-4d88-b5b9-683b939cbbc8');
 
 const createCard = (item) => {
   return new Card(item, '.template-card', (() => {
@@ -14,17 +17,19 @@ const createCard = (item) => {
 };
 
 const renderCard = (item) => {
-  renderCards.addItem(createCard(item).generateCard());
+  return createCard(item).generateCard();
 };
 //---------------рендер карточек--------------------------------
-const renderCards = new Section({
-  items: initialCards,
-  renderer: (item) => {
-    renderCard(item);
-  },
-}, '.cards');
+api.getInitialCards().then((data) => {
+  const renderCards = new Section({
+    items: data,
+    renderer: (item) => {      
+      renderCards.addItem(renderCard(item));
+    },
+  }, '.cards');
+  renderCards.renderItems();
+})
 
-renderCards.renderItems();
 //--------------добавление карточки-----------------------------
 const popupAddCard = new PopupWithForm('.popup_type_new-card', (data) => {
   renderCard(data);
