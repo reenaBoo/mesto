@@ -1,4 +1,4 @@
-export {initialCards, obj, userForm, cardForm, editButton, addCardButton, userName, userJob};
+export {initialCards, obj, userForm, cardForm, editButton, addCardButton, userName, userJob, userAvatar};
 
 const initialCards = [
   {
@@ -37,6 +37,7 @@ const obj = ({
 
 const userName = document.querySelector('.profile__name');
 const userJob = document.querySelector('.profile__description');
+const userAvatar = document.querySelector('.profile__avatar');
 
 const userForm = document.querySelector('.form_type_user');
 const cardForm = document.querySelector('.form_type_card');

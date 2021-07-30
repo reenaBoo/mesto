@@ -38,4 +38,18 @@ export class Api {
       console.log(err)
     })
   }
+
+  editUserInfo(name, about) {
+    return fetch(`${this._url}/${this._cohort}/users/me`, {
+      method: 'PATCH',
+      headers: {
+        authorization: this._token,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        name: name,
+        about: about
+      })
+    });
+  }
 }
