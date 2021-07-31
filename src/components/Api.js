@@ -5,21 +5,35 @@ export class Api {
     this._token = token;
   }
 
+  _checkStatus(res) {    
+      if(res.ok) {
+        return res.json();
+      }
+      return Promise.reject(res.status);
+    }
+
   getInitialCards() {
     return fetch(`${this._url}/${this._cohort}/cards`, {
       headers: {
         authorization: this._token
       }
     })
-    .then((res) => {
-      if(res.ok) {
-        return res.json();
-      }
-      return Promise.reject(res.status);
+    .then(this._checkStatus)
+  }
+
+  postNewCard(name, link) {
+    fetch(`${this._url}/${this._cohort}/cards`, {
+      method: 'POST',
+      headers: {
+        authorization: this._token,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        name: name,
+        link: link
+      })
     })
-    .catch((err) => {
-      console.log(err)
-    })
+    .then(this._checkStatus)
   }
 
   getUserInfo() {
@@ -28,15 +42,7 @@ export class Api {
         authorization: this._token
       }
     })
-    .then((res) => {
-      if(res.ok) {
-        return res.json();
-      }
-      return Promise.reject(res.status);
-    })
-    .catch((err) => {
-      console.log(err)
-    })
+    .then(this._checkStatus)
   }
 
   editUserInfo(name, about) {
@@ -50,6 +56,7 @@ export class Api {
         name: name,
         about: about
       })
-    });
+    })
+    .then(this._checkStatus)
   }
 }

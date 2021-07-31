@@ -22,20 +22,31 @@ const renderCard = (item) => {
   return createCard(item).generateCard();
 };
 
-//---------------рендер карточек--------------------------------
-api.getInitialCards().then((data) => {
+const constuctorCard = (data) => {
   const renderCards = new Section({
-    items: data,
-    renderer: (item) => {      
-      renderCards.addItem(renderCard(item));
-    },
-  }, '.cards');
-  renderCards.renderItems();
-})
+  items: data,
+  renderer: (item) => {      
+    renderCards.addItem(renderCard(item));
+  },
+}, '.cards');
+renderCards.renderItems();
+}
+
+//---------------рендер карточек--------------------------------
+api.getInitialCards()
+  .then((data) => {
+    constuctorCard(data);
+  })
+  .catch((err) => console.log(err))
 
 //--------------добавление карточки-----------------------------
-const popupAddCard = new PopupWithForm('.popup_type_new-card', (data) => {
-  renderCard(data);
+const popupAddCard = new PopupWithForm('.popup_type_new-card', (dataCard) => {
+  console.log(dataCard)
+  api.postNewCard(dataCard.name, dataCard.link)
+    .then(() => { 
+      constuctorCard(dataCard);
+    })
+    .catch((err) => console.log(err))
 });
 
 popupAddCard.setEventListeners();
@@ -51,19 +62,18 @@ popupWithImage.setEventListeners();
 
 const userData = new UserInfo(userName, userJob, userAvatar);
 
-// function handleUserInfo (data) {
-//   userData.setUserInfo(data.user, data.about, data.avatar);
-// }
+function handleUserInfo (data) {
+  userData.setUserInfo(data.name, data.about);
+}
 
 api.getUserInfo().then((data) => {
-  userData.setUserInfo(data.name, data.about, data._id);
+  handleUserInfo(data);
 })
 
-// const popupUser = new PopupWithForm('.popup_type_edit', handleUserInfo);
 const popupUser = new PopupWithForm('.popup_type_edit', (userInfo) => {
   api.editUserInfo(userInfo.name, userInfo.about)
     .then(() => {
-      userData.setUserInfo(userInfo.name, userInfo.about);
+      handleUserInfo(userInfo);
     })
     .catch((err) => console.log(err))
 });
@@ -71,7 +81,7 @@ popupUser.setEventListeners();
 
 editButton.addEventListener('click', () => {
   const currentUserInfo = userData.getUserInfo();
-  userForm.user.value = currentUserInfo.user;
+  userForm.name.value = currentUserInfo.name;
   userForm.about.value = currentUserInfo.about;
   userValidate.resetErrorText();
   popupUser.open();
