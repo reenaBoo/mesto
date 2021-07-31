@@ -22,7 +22,7 @@ export class Api {
   }
 
   postNewCard(name, link) {
-    fetch(`${this._url}/${this._cohort}/cards`, {
+    return fetch(`${this._url}/${this._cohort}/cards`, {
       method: 'POST',
       headers: {
         authorization: this._token,
@@ -55,6 +55,20 @@ export class Api {
       body: JSON.stringify({
         name: name,
         about: about
+      })
+    })
+    .then(this._checkStatus)
+  }
+
+  editUserAvatar(avatar) {
+    return fetch(`${this._url}/${this._cohort}/users/me`, {
+      method: 'PATCH',
+      headers: {
+        authorization: this._token,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        avatar: avatar
       })
     })
     .then(this._checkStatus)

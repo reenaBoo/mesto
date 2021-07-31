@@ -1,31 +1,4 @@
-export {initialCards, obj, userForm, cardForm, editButton, addCardButton, userName, userJob, userAvatar};
-
-const initialCards = [
-  {
-    name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-  },
-  {
-    name: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-  },
-  {
-    name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-  },
-  {
-    name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-  },
-  {
-    name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-  },
-  {
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-  }
-];
+export {obj, userForm, cardForm, avatarForm, editProfileButton, addCardButton, editAvatarButton, userName, userJob, userAvatar};
 
 const obj = ({
   inputSelector: '.form__input',
@@ -41,6 +14,8 @@ const userAvatar = document.querySelector('.profile__avatar');
 
 const userForm = document.querySelector('.form_type_user');
 const cardForm = document.querySelector('.form_type_card');
+const avatarForm = document.querySelector('.form_type_avatar');
 
-const editButton = document.querySelector('.profile__edit-button');
+const editProfileButton = document.querySelector('.profile__edit-button');
 const addCardButton = document.querySelector('.profile__add-button');
+const editAvatarButton = document.querySelector('.profile__avatar-edit')
