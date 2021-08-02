@@ -10,7 +10,7 @@
 /* блок profile */
 @import url(../blocks/profile/profile.css);
 @import url(../blocks/profile/__avatar-container/profile__avatar-container.css);
-@import url(../blocks/profile/__avatar_overlay/profile__avatar_overlay.css);
+@import url(../blocks/profile/__avatar-overlay/profile__avatar-overlay.css);
 @import url(../blocks/profile/__avatar/profile__avatar.css);
 @import url(../blocks/profile/__avatar-edit/profile__avatar-edit.css);
 @import url(../blocks/profile/__info/profile__info.css);

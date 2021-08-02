@@ -18,4 +18,4 @@ const avatarForm = document.querySelector('.form_type_avatar');
 
 const editProfileButton = document.querySelector('.profile__edit-button');
 const addCardButton = document.querySelector('.profile__add-button');
-const avatarOverlay = document.querySelector('.profile__avatar_overlay');
+const avatarOverlay = document.querySelector('.profile__avatar-overlay');

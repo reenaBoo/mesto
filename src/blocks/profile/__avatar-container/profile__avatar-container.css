@@ -6,11 +6,11 @@
   margin-right: 30px;
 }
 
-.profile__avatar-container:hover .profile__avatar_overlay {
+.profile__avatar-container:hover .profile__avatar-overlay {
 opacity: 1;
 }
 
-.profile__avatar_overlay:hover .profile__avatar-edit {
+.profile__avatar-overlay:hover .profile__avatar-edit {
   background-image: url(../../../images/edit-button-vector.svg);
   background-position: center;
   background-repeat: no-repeat;
