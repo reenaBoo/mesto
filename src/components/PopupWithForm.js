@@ -3,6 +3,7 @@ export class PopupWithForm extends Popup {
   constructor(popup, handleSubmit) {
     super(popup);
     this._form = this._popup.querySelector('.form');
+    this._confirmButton = this._form.querySelector('.form__save-button');
     this._handleSubmit = handleSubmit;
   };
 
@@ -21,7 +22,6 @@ export class PopupWithForm extends Popup {
       evt.preventDefault();
       const data = this._getInputValues();
       this._handleSubmit(data);
-      this.close();
     });
   };
 

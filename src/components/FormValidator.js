@@ -68,4 +68,8 @@ export class FormValidator {
     });
     this._toggleButtonState();
   };
+
+  changeButtonText = (text) => {
+    this._submitButtonSelector.textContent = text;
+  }
 };

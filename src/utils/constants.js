@@ -1,4 +1,4 @@
-export {obj, userForm, cardForm, avatarForm, editProfileButton, addCardButton, editAvatarButton, userName, userJob, userAvatar};
+export {obj, userForm, cardForm, avatarForm, editProfileButton, addCardButton, avatarOverlay, userName, userJob, userAvatar};
 
 const obj = ({
   inputSelector: '.form__input',
@@ -18,4 +18,4 @@ const avatarForm = document.querySelector('.form_type_avatar');
 
 const editProfileButton = document.querySelector('.profile__edit-button');
 const addCardButton = document.querySelector('.profile__add-button');
-const editAvatarButton = document.querySelector('.profile__avatar-edit')
+const avatarOverlay = document.querySelector('.profile__avatar_overlay');

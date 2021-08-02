@@ -3,6 +3,7 @@ export class UserInfo {
     this._userName = userName;
     this._userAbout = userAbout;
     this._userAvatar = userAvatar;
+    this._profileId = '';
   };
 
   getUserInfo() {
@@ -20,5 +21,9 @@ export class UserInfo {
 
   setUserAvatar(avatarUpdate) {
     this._userAvatar.src = avatarUpdate;
+  }
+
+  getUserId() {
+    return this._userId;
   }
 }
