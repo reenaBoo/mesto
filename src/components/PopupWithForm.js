@@ -29,4 +29,8 @@ export class PopupWithForm extends Popup {
     this._form.reset();
     super.close();
   };
+
+  changeButtonText = (text) => {
+    this._confirmButton.textContent = text;
+  }
 }

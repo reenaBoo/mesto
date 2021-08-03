@@ -24,17 +24,18 @@ function handleUserAvatar(data) {
   userData.setUserAvatar(data.avatar)
 }
 
-function handleCardLike() {
-  const cardArr = this.isLiked() ? api.deleteLike(this.cardId) : api.likeCard(this.cardId);
+function handleCardLike(card) {
+  const cardArr = card.isLiked() ? api.deleteLike(card.cardId) : api.likeCard(card.cardId);
   cardArr.then((response) => {
     this.likes = response.likes;
     this.handleToggleLike();
     this.setCounter(response.likes.length);
   })
+  .catch((err) => console.log(err))
 }
 
-function handleCardDelete() {
-  popupDelete.open(this);
+function handleCardDelete(card) {
+  popupDelete.open(card);
 }
 
 const popupDelete = new PopupWithSubmit('.popup_type_delete', (card) => {
@@ -42,6 +43,7 @@ const popupDelete = new PopupWithSubmit('.popup_type_delete', (card) => {
   .then((res) => {
     if (res.message === "Пост удалён") {
       card.removeElement();
+      popupDelete.close();
     }
   })  
   .catch((err) => console.log(err))
@@ -74,20 +76,17 @@ Promise.all([api.getUserInfo(), api.getInitialCards()])
     //--------------заполнение профиля------------------------------
     handleUserInfo(apiData);
     handleUserAvatar(apiData);
-
-    const currentUserInfo = userData.getUserInfo();
-    userData.getUserId();
     //---------------рендер карточек--------------------------------
     renderCards.renderItems(cardsData);
 
     //---------добавление карточки на сервер------------------------
     const popupAddCard = new PopupWithForm('.popup_type_new-card', (dataCard) => {
-      cardValidate.changeButtonText('Создание...');
+      popupAddCard.changeButtonText('Создание...');
       api.postNewCard(dataCard.name, dataCard.link)
         .then((data) => { 
           renderCards.addItem(renderCard(data));
           popupAddCard.close();
-          cardValidate.changeButtonText('Создать');
+          popupAddCard.changeButtonText('Создать');
         })
         .catch((err) => console.log(err))
     });
@@ -95,12 +94,12 @@ Promise.all([api.getUserInfo(), api.getInitialCards()])
 
     //----------добавление данных профиля на сервер-----------------
     const popupUser = new PopupWithForm('.popup_type_edit', (userInfo) => {
-      userValidate.changeButtonText('Сохранение...');
+      popupUser.changeButtonText('Сохранение...');
       api.editUserInfo(userInfo.name, userInfo.about)
         .then(() => {
           handleUserInfo(userInfo);
           popupUser.close();
-          userValidate.changeButtonText('Сохранить');
+          popupUser.changeButtonText('Сохранить');
         })
         .catch((err) => console.log(err))
     });
@@ -108,39 +107,40 @@ Promise.all([api.getUserInfo(), api.getInitialCards()])
 
     //----------добавление аватарки профиля на сервер---------------
     const popupAvatar = new PopupWithForm('.popup_type_avatar', (userInfo) => {
-      avatarValidate.changeButtonText('Сохранение...');
+      popupAvatar.changeButtonText('Сохранение...');
       api.editUserAvatar(userInfo.avatar)
         .then(() => {
           handleUserAvatar(userInfo);
           popupAvatar.close();
-          avatarValidate.changeButtonText('Сохранить');
+          popupAvatar.changeButtonText('Сохранить');
         })
         .catch((err) => console.log(err))
     });
     popupAvatar.setEventListeners();
 
     //-------------слушатели-----------------------------------------
-    editProfileButton.addEventListener('click', () => {      
+    editProfileButton.addEventListener('click', () => { 
+      const currentUserInfo = userData.getUserInfo();     
       userForm.name.value = currentUserInfo.name;
       userForm.about.value = currentUserInfo.about;
-      userValidate.resetErrorText();
+      userValidate.resetValidation();
       popupUser.open();
     });
     
     addCardButton.addEventListener('click', () => {
-      cardValidate.resetErrorText();
+      cardValidate.resetValidation();
       popupAddCard.open();
     });
     
     avatarOverlay.addEventListener('click', () => {
-      avatarValidate.resetErrorText();
+      avatarValidate.resetValidation();
       popupAvatar.open();
     });
 
   })
   .catch((err) => {
     console.log(err);
-  }); 
+  })
 
 //-------------------валидация----------------------------------
 const userValidate = new FormValidator(obj, userForm);

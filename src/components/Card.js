@@ -59,7 +59,7 @@ export class Card {
 
   _setEventListeners() {
     this._cardButtonLike.addEventListener('click', () => {
-      this._handleCardLike();
+      this._handleCardLike(this);
     });
     this._cardButtonDelete.addEventListener('click', () => {
       this._handleCardDelete(this);
